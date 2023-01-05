@@ -24,7 +24,7 @@ var args = utils.minimist(process.argv.slice(2), {
   string: ['e'],
   string: ['p'],
   string: ['b'],
-  alias: {h: 'help'}
+  string: ['c'],
 });
 
 if (!args.d && !args.i && !args.p && (args._.length==0) || args.h) {
@@ -51,6 +51,9 @@ if (!args.d && !args.i && !args.p && (args._.length==0) || args.h) {
     '          Supports: asterisk, dash, plus',
     '          (Default is asterisk)',
     '',
+    '  -c      Add a category for the ADR',
+    '          (Default is empty)',
+    '',
     '  -h:     Shows how to use this program',
     ''
   ].join(os.EOL));
@@ -66,6 +69,10 @@ var defaultAdrLogDir = path.resolve(process.cwd());
 var adrLogDir = args.d || defaultAdrLogDir;
 var adrPathPrefix = args.p || '';
 var adrBulletStyle = args.b || '';
+var adrCategory = ''
+if (args.c) {
+  adrCategory += args.c + '-';
+}
 
 var defaultAdrLogFile = 'index.md';
 var adrLogFile = args._[0] || adrLogDir + '/' + defaultAdrLogFile;
@@ -99,7 +106,7 @@ if (fs.existsSync(adrLogFile)) {
 } else {
   existingLogString = '<!-- adrlog -->' + os.EOL + os.EOL + '<!-- adrlogstop -->' + os.EOL;
 }
-var newLogString = toc.insertAdrToc(existingLogString, headings, {pathPrefix: adrPathPrefix, dir: adrLogDir, bulletStyle: adrBulletStyle, tocDir});
+var newLogString = toc.insertAdrToc(existingLogString, headings, { pathPrefix: adrPathPrefix, dir: adrLogDir, bulletStyle: adrBulletStyle, category: adrCategory, tocDir });
 
 if (args.i) {
   fs.writeFileSync(adrLogFile, newLogString);

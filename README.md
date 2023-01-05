@@ -50,6 +50,9 @@ Usage: adr-log [-d <directory>] [-i <input>] [-p <path_prefix>]
   -b      Change the character used to for bullets
           Supports: asterisk, dash, plus
           (Default is asterisk)
+  
+  -c      Add a category for the ADR
+          (Default is empty)
 
   -h:     Shows how to use this program
 ```
