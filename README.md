@@ -1,24 +1,24 @@
-# adr-log [![NPM version](https://img.shields.io/npm/v/adr-log.svg?style=flat)](https://www.npmjs.com/package/adr-log)
+# LTK Engineering ADRs
 
-> Generate an architectural decision log out of architectural decision records (ADRs).
+This is a repository where we keep track of ADRs, or architectural decisions that we make and their rationales.
 
-## Table of Contents
+## When do I use this?
 
-<!-- toc -->
+If you are making a decision that feels "architecturally significant", such as choosing one framework over another, write a short ADR using [template.md](./docs/template.md) and open a PR.
 
-- [Install](#install)
-- [CLI](#cli)
-- [Usage](#usage)
-  * [Examples](#examples)
-    + [Printing the adr log to stdout](#printing-the-adr-log-to-stdout)
-    + [Generating an index.md file containing the adr log](#generating-an-indexmd-file-containing-the-adr-log)
-- [Developing](#developing)
-- [Related Tooling](#related-tooling)
-- [License](#license)
+## How do I get this merged?
 
-<!-- tocstop -->
+You need at least one approval from a staff engineer, and 24 hours of no other dissent.
 
-## Install
+## Why do I need this?
+
+When someone pops up in the chat saying "why did we do this?", you now have a record you can send them something that recorded that the decision was made, and _why_ it was made.
+
+## How do I use the tooling in this repo?
+
+The ADRs themselves are short markdown documents. This can be as lo-fi as you want it to be. Otherwise, the community has developed a CLI below that you can use to list them.
+
+### Install
 
 Install with [npm](https://www.npmjs.com/):
 
@@ -26,7 +26,7 @@ Install with [npm](https://www.npmjs.com/):
 npm install -g adr-log
 ```
 
-## CLI
+### CLI
 
 ```text
 Usage: adr-log [-d <directory>] [-i <input>] [-p <path_prefix>]
@@ -54,11 +54,11 @@ Usage: adr-log [-d <directory>] [-i <input>] [-p <path_prefix>]
   -h:     Shows how to use this program
 ```
 
-## Usage
+### Usage
 
-### Examples
+#### Examples
 
-#### Printing the adr log to stdout
+##### Printing the adr log to stdout
 
 Consider a directory consisting of three files (`0000-example-1.md`, `0001-example-2.md`, `0002-example-3.md`).
 Execute following command:
@@ -75,7 +75,7 @@ This outputs following log on your console:
 * [ADR-0002](0002-example-3.md) - Example 3
 ```
 
-#### Generating an index.md file containing the adr log
+##### Generating an index.md file containing the adr log
 
 Since this is basically a fork of [Jon Schlinkert's](https://github.com/jonschlinkert) [markdown-toc](https://github.com/jonschlinkert/markdown-toc), you can also choose to insert the log into an existing file.
 For this to work the file must contain an opening `<!-- adrlog -->` code comment, after which the log will be inserted.
@@ -100,14 +100,14 @@ Result in following `index.md`:
 <!-- adrlogstop -->
 ```
 
-### Alternative Indexing
+#### Alternative Indexing
 
 - search recursively underneath the given directory
 - allow date prefixes as well as number prefixes
 - allow specification of `index` or `date` properties in frontmatter
 - fallback to auto-numbering for ADRs without filename prefixes or frontmatter
 
-## Developing
+### Developing
 
 - Run `node cli.js` to execute the CLI.
   Also works with relative directgories.
@@ -116,7 +116,7 @@ Result in following `index.md`:
 - Use [relase-it](https://www.npmjs.com/package/release-it) and [github-release-from-changelog](https://github.com/MoOx/github-release-from-changelog) for release management.
   See also [ADR-0003](docs/adr/0003-use-release-it-and-github-release-from-changelog-as-release-tooling.md).
 
-## Related Tooling
+### Related Tooling
 
 [adr-tools](https://github.com/npryce/adr-tools) is the most prominent related tool.
 It supports generating an ADR log by using `adr generate toc`.
@@ -127,7 +127,7 @@ The difference to adr-tools is
 1. adr-log is available using `npm` and thus more easy to install.
 2. adr-tools does not include the heading of each ADR into the output.
 
-## License
+### License
 
 Copyright © 2017 [Tino Stadelmaier](https://github.com/tstadelmaier), [Oliver Kopp](https://github.com/koppor), [Armin Hüneburg](https://github.com/hueneburg), [Tobias Wältken](https://github.com/mee4895).
 
